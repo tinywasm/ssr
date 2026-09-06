@@ -15,15 +15,15 @@ REVIEWER: none
 **Requisito previo**, porque este entorno no lo trae instalado:
 
 ```bash
-go install github.com/tinywasm/devflow/cmd/gotest@latest
+go install webtyp.com/devflow/cmd/gotest@latest
 ```
 
 **Requisito previo de dependencia:** este plan usa
-`github.com/tinywasm/image/favicon`, el paquete que deriva el juego de iconos de
+`webtyp.com/image/favicon`, el paquete que deriva el juego de iconos de
 un logo cuadrado. Empieza con:
 
 ```bash
-go get github.com/tinywasm/image@latest
+go get webtyp.com/image@latest
 ```
 
 Si ese paquete todavía no existe en la versión publicada, **detente y dilo en el
@@ -62,7 +62,7 @@ plan corrige.
 Un **noveno productor**, `Favicon()`, con la misma mecánica que ya usa
 `RenderSite()`: el recolector generado lee los campos del valor devuelto y los
 serializa a JSON en su propia estructura *wire*, así que el proyecto puede
-devolver un tipo de `tinywasm/image/favicon` sin que el recolector lo importe.
+devolver un tipo de `webtyp/image/favicon` sin que el recolector lo importe.
 
 Lo que declara un proyecto, en su archivo `!wasm` de configuración:
 
@@ -195,7 +195,7 @@ El último es el que hay que escribir primero: hoy falla.
   nueve, con `Favicon()` y su regla de módulo raíz.
 - [`README.md`](../README.md): ejemplo de declaración con `go:embed`, y la nota
   de que `sitec` **no sanea** el SVG que reciba: un SVG de un tercero se limpia
-  antes con `github.com/tinywasm/svg/sanitize`. El de un proyecto es suyo y es
+  antes con `webtyp.com/svg/sanitize`. El de un proyecto es suyo y es
   de confianza.
 
 Ningún documento debe citar `docs/PLAN.md`: este archivo se borra al publicar.
@@ -214,11 +214,11 @@ Ningún documento debe citar `docs/PLAN.md`: este archivo se borra al publicar.
 ## 6. Anti-footguns
 
 1. **No derives los tamaños aquí.** Redimensionar y escribir el `.ico` es de
-   `github.com/tinywasm/image/favicon`. Este repo decide *cuándo* se llama y
+   `webtyp.com/image/favicon`. Este repo decide *cuándo* se llama y
    *cómo* se enlaza.
 2. **No sanees SVG aquí.** Un proyecto declara su propio icono, y lo suyo es de
    confianza. El SVG de un desconocido lo limpia
-   `github.com/tinywasm/svg/sanitize`, en quien lo recibe.
+   `webtyp.com/svg/sanitize`, en quien lo recibe.
 3. **Las dos ramas de la plantilla de `extract.go`.** Receptor con nombre y
    paquete suelto. Es el error más fácil de cometer aquí.
 4. **No conviertas el icono ausente en un error de build.** Ver §2.4.

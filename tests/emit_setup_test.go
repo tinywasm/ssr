@@ -3,7 +3,7 @@
 package sitec_test
 
 import (
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 	"os"
 	"path/filepath"
 	"testing"

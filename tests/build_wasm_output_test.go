@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 func TestRunWasmBuild_FailsIfInputMissing(t *testing.T) {
@@ -111,7 +111,7 @@ func TestWasmbuild_WritesScriptJSFromJSPackage_TinyGo(t *testing.T) {
 
 // TestWasmBuild_CustomEntryAndOutputName covers the non-frontend case: an edge
 // worker compiles main.go and must come out named for the platform that serves
-// it, not "client.wasm". Without this, a caller like tinywasm/goflare cannot
+// it, not "client.wasm". Without this, a caller like webtyp/goflare cannot
 // use this builder at all and has to keep its own copy of the compile step.
 func TestWasmBuild_CustomEntryAndOutputName(t *testing.T) {
 	tmpDir := t.TempDir()

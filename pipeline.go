@@ -5,13 +5,13 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/tinywasm/fmt"
-	"github.com/tinywasm/js"
-	"github.com/tinywasm/modfind"
+	"webtyp.com/fmt"
+	"webtyp.com/js"
+	"webtyp.com/modfind"
 )
 
 const (
-	cssModulePath = "tinywasm/css"
+	cssModulePath = "webtyp.com/css"
 )
 
 type module struct {
@@ -31,7 +31,7 @@ type Extractor struct {
 	wasmBuilder    WasmBuilder
 	// verbose gates low-value-by-default diagnostics (e.g. the "N packages
 	// skipped" reachability summary) that are correct but noisy on every
-	// cold-cache scan. Off by default; the caller (tinywasm/app) wires it to
+	// cold-cache scan. Off by default; the caller (webtyp/app) wires it to
 	// the -debug CLI flag via SetVerbose.
 	verbose bool
 	mu      sync.Mutex

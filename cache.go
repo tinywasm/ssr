@@ -9,7 +9,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/tinywasm/fmt"
+	"webtyp.com/fmt"
 )
 
 // ssrCacheEntry holds a cached extraction result keyed by module hash set.

@@ -5,13 +5,13 @@ Quick reference guide for common AssetMin operations.
 ## Installation
 
 ```bash
-go get github.com/tinywasm/assetmin
+go get webtyp.com/assetmin
 ```
 
 ## Basic Setup
 
 ```go
-import "github.com/tinywasm/assetmin"
+import "webtyp.com/assetmin"
 
 config := &assetmin.Config{
     OutputDir:       "web/public",
@@ -34,8 +34,8 @@ am.RegisterComponents(button, card)
 
 ### SSR Conventions
 - **Components:** Receiver type for `Render*` methods is automatically detected and instantiated. No `SSRInstance()` required.
-- **Core Modules:** Like `tinywasm/css`, may expose package-level functions instead.
-- **Typed CSS:** `RenderCSS()` and `RootCSS()` return `*css.Stylesheet` (from `github.com/tinywasm/css`).
+- **Core Modules:** Like `webtyp/css`, may expose package-level functions instead.
+- **Typed CSS:** `RenderCSS()` and `RootCSS()` return `*css.Stylesheet` (from `webtyp.com/css`).
 
 ## File Events
 

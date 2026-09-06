@@ -15,17 +15,17 @@ import (
 	"github.com/tdewolff/minify/v2/js"
 	minifySvg "github.com/tdewolff/minify/v2/svg"
 	"github.com/tdewolff/minify/v2/xml"
-	twcss "github.com/tinywasm/css"
-	"github.com/tinywasm/fmt"
-	"github.com/tinywasm/fmt/lang"
-	"github.com/tinywasm/font"
-	"github.com/tinywasm/image/favicon"
-	imgmin "github.com/tinywasm/image/min"
-	"github.com/tinywasm/svg/sprite"
+	twcss "webtyp.com/css"
+	"webtyp.com/fmt"
+	"webtyp.com/fmt/lang"
+	"webtyp.com/font"
+	"webtyp.com/image/favicon"
+	imgmin "webtyp.com/image/min"
+	"webtyp.com/svg/sprite"
 )
 
 // Diagnostics are built word by word through lang.Translate so each term can
-// be looked up in the dictionary (tinywasm/fmt/lang). Identifiers, symbols and
+// be looked up in the dictionary (webtyp/fmt/lang). Identifiers, symbols and
 // runtime values are passed as single arguments: they are never translated.
 const msgPrefix = "sitec:"
 

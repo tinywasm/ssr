@@ -3,7 +3,7 @@
 package sitec_test
 
 import (
-	"github.com/tinywasm/js"
+	"webtyp.com/js"
 	"os"
 	"path/filepath"
 	"strings"

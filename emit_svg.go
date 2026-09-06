@@ -3,8 +3,8 @@ package sitec
 import (
 	"sort"
 
-	"github.com/tinywasm/fmt"
-	"github.com/tinywasm/svg/sprite"
+	"webtyp.com/fmt"
+	"webtyp.com/svg/sprite"
 )
 
 func NewSvgHandler(ac *Config, filename string) *asset {

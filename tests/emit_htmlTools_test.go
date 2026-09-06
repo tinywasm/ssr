@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 // Canonical viewport content. Both shells (html.go NewHtmlHandler and

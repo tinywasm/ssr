@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/tinywasm/fmt"
+	"webtyp.com/fmt"
 )
 
 type execToolchain struct{}

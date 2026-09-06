@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	imgmin "github.com/tinywasm/image/min"
-	"github.com/tinywasm/router/mock"
-	"github.com/tinywasm/sitec"
+	imgmin "webtyp.com/image/min"
+	"webtyp.com/router/mock"
+	"webtyp.com/sitec"
 )
 
 type stubImageProcessor struct {

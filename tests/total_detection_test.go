@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
 func writeAppFile(t *testing.T, root, rel, content string) {
@@ -98,17 +98,17 @@ func TestNoProducerIsAnError(t *testing.T) {
 	root := setupBaseApp(t)
 	writeAppFile(t, root, "components/unrelated.go", `package components
 
-import _ "github.com/tinywasm/widget/style"
+import _ "webtyp.com/widget/style"
 `)
 
 	e := seedExtractor(root)
-	e.SetAssetLibraries([]string{"github.com/tinywasm/widget/style"})
+	e.SetAssetLibraries([]string{"webtyp.com/widget/style"})
 	_, err := e.ExtractModule(root)
 	if err == nil {
 		t.Fatal("expected build failure when package imports asset library and declares no producer")
 	}
 
-	expectedStr := "ssr: package example.com/app/components imports github.com/tinywasm/widget/style but declares no producer"
+	expectedStr := "ssr: package example.com/app/components imports webtyp.com/widget/style but declares no producer"
 	if !strings.Contains(err.Error(), expectedStr) {
 		t.Fatalf("expected error to contain %q, got %v", expectedStr, err)
 	}
@@ -175,7 +175,7 @@ func TestProducerCheckIsOnByDefault(t *testing.T) {
 	// AssetLibraries y no la comprobación previa específica de css.go.
 	writeAppFile(t, root, "widget/widget.go", `package widget
 
-import _ "github.com/tinywasm/css"
+import _ "webtyp.com/css"
 
 type Widget struct{}
 `)

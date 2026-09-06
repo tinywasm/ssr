@@ -12,7 +12,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 // TestReleaseIncluyeImagen: un proyecto que declara RenderImages() y
@@ -46,18 +46,17 @@ func TestReleaseIncluyeImagen(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/html v0.0.17
-	github.com/tinywasm/image v0.0.21
-	github.com/tinywasm/sitec v0.0.0
+	webtyp.com/html v0.0.17
+	webtyp.com/image v0.0.21
+	webtyp.com/sitec v0.0.0
 )
 
-replace github.com/tinywasm/sitec => `+repoRoot+`
-`)
+replace webtyp.com/sitec => `+repoRoot+"\n"+webtypReplaces(t))
 	write(filepath.Join(appDir, "app.go"), `package app
 
 import (
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/html"
+	"webtyp.com/sitec"
 )
 
 type PageProducer struct{}
@@ -78,7 +77,7 @@ func (p *PageProducer) RenderSite() *sitec.Site {
 	// (convención del ecosistema): RenderImages en otro archivo no se detecta.
 	write(filepath.Join(appDir, "image.go"), `package app
 
-import "github.com/tinywasm/image"
+import "webtyp.com/image"
 
 func RenderImages() []image.Asset {
 	return []image.Asset{

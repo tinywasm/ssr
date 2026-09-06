@@ -15,7 +15,7 @@ Each component is inspected for the optional interfaces below. Implemented inter
 
 ### Root CSS (theme)
 ```go
-import "github.com/tinywasm/css"
+import "webtyp.com/css"
 
 type rootCssProvider interface {
     RootCSS() *css.Stylesheet
@@ -25,7 +25,7 @@ Routed to the `open` slot. Subject to the [single-override rule](SSR.md#single-o
 
 ### Component CSS
 ```go
-import "github.com/tinywasm/css"
+import "webtyp.com/css"
 
 type cssProvider interface {
     RenderCSS() *css.Stylesheet
@@ -35,7 +35,7 @@ Routed to the `middle` slot. Use this for component-scoped styles, NOT for `:roo
 
 ### JavaScript
 ```go
-import "github.com/tinywasm/js"
+import "webtyp.com/js"
 
 type jsProvider interface {
     RenderJS() []*js.Script
@@ -63,7 +63,7 @@ type htmlProvider interface {
 For automatic module discovery via `css.go`, `js.go`, `svg.go`, `html.go`, or `ssr.go`, `assetmin` automatically detects the receiver type of your methods and instantiates the component. You no longer need to export an `SSRInstance()` function.
 
 ### Typed CSS
-Both `RootCSS()` and `RenderCSS()` use the concrete type `*css.Stylesheet` from the `github.com/tinywasm/css` library. This ensures type safety and allows the use of Go-based CSS DSLs. The extractor and `RegisterComponents` call `.String()` on these objects to get the raw CSS.
+Both `RootCSS()` and `RenderCSS()` use the concrete type `*css.Stylesheet` from the `webtyp.com/css` library. This ensures type safety and allows the use of Go-based CSS DSLs. The extractor and `RegisterComponents` call `.String()` on these objects to get the raw CSS.
 
 ## When to use registration vs `ssr.go`
 

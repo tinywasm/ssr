@@ -5,7 +5,7 @@ package sitec_test
 import (
 	"testing"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 // TestAssetRoutesArePublic pins the one property that decides whether anything

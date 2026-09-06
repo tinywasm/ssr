@@ -4,8 +4,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/tinywasm/fmt"
-	"github.com/tinywasm/image/min"
+	"webtyp.com/fmt"
+	"webtyp.com/image/min"
 )
 
 const (

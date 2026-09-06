@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/router/mock"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/router/mock"
+	"webtyp.com/sitec"
 )
 
 func TestRegisterRoutes(t *testing.T) {

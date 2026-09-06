@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/tinywasm/css"
-	"github.com/tinywasm/js"
-	"github.com/tinywasm/svg/sprite"
+	"webtyp.com/css"
+	"webtyp.com/js"
+	"webtyp.com/svg/sprite"
 	"slices"
 )
 

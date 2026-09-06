@@ -17,8 +17,8 @@ It exists so that a component author writes **only** the component. There is no
 registry to update, no init function, no manifest — a package that declares a
 producer is collected because it declares one.
 
-Module discovery is delegated to `tinywasm/modfind`, so lookups are shared and
-cached across `tinywasm` tools.
+Module discovery is delegated to `webtyp/modfind`, so lookups are shared and
+cached across `webtyp` tools.
 
 ---
 
@@ -26,8 +26,8 @@ cached across `tinywasm` tools.
 
 | Module | Owns | Never does |
 |---|---|---|
-| `tinywasm/css` | **Values** — the token catalog, light/dark switching, contrast guarantees | Know anything about components |
-| `tinywasm/widget` | **Decisions** — which token applies to which part in which state | Invent a value |
+| `webtyp/css` | **Values** — the token catalog, light/dark switching, contrast guarantees | Know anything about components |
+| `webtyp/widget` | **Decisions** — which token applies to which part in which state | Invent a value |
 | `sitec` | **Delivery** — collect the sheets actually used, order and deduplicate them | Know what a widget is |
 
 See [diagrams/EXTRACTION.md](diagrams/EXTRACTION.md).
@@ -57,7 +57,7 @@ names, on any type, in any non-test file.
 | `IconSvg()` | `Icons` | sprite, merged across packages |
 | `Fonts()` | `Fonts` | typeface identity (`font.Declaration`); one per module |
 | `RenderSite()` | `Site` | site declaration (`*sitec.Site`): public URL + static assets. Only the project root may declare it; a second root or any non-root module declaring it is a build error/warning respectively |
-| `Favicon()` | `Favicon` | site icon (`favicon.Source` via `github.com/tinywasm/image/favicon`): derives `icon-32.png`, `icon-192.png`, `apple-touch-icon.png`, `favicon.ico` and `favicon.svg` (when SVG provided). Only the project root may declare it; a non-root module declaring it fails the build naming the module |
+| `Favicon()` | `Favicon` | site icon (`favicon.Source` via `webtyp.com/image/favicon`): derives `icon-32.png`, `icon-192.png`, `apple-touch-icon.png`, `favicon.ico` and `favicon.svg` (when SVG provided). Only the project root may declare it; a non-root module declaring it fails the build naming the module |
 
 A module's `Site` travels with the module: the root's declaration is what the
 assembler listens to. It resolves the effective `SiteURL` once (the project

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/html"
+	"webtyp.com/sitec"
 )
 
 // TestSiteSoloElRaizDescribeElSitio: RenderSite() en un módulo que no es el

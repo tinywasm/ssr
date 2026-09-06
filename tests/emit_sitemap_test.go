@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/html"
+	"webtyp.com/sitec"
 )
 
 func TestEmitSitemap_WithSiteURL(t *testing.T) {

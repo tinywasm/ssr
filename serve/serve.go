@@ -4,8 +4,8 @@ import (
 	"path"
 	"strings"
 
-	"github.com/tinywasm/router"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/router"
+	"webtyp.com/sitec"
 )
 
 const (

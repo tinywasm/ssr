@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
 // writeTree writes a set of relative path -> content pairs under base.
@@ -26,7 +26,7 @@ func writeTree(t *testing.T, base string, files map[string]string) {
 	}
 }
 
-// setupUnreachablePackageProject builds the exact shape that breaks tinywasm/layout
+// setupUnreachablePackageProject builds the exact shape that breaks webtyp/layout
 // against components@v0.5.7:
 //
 //	app          -> requires dep, imports ONLY dep/used
@@ -34,7 +34,7 @@ func writeTree(t *testing.T, base string, files map[string]string) {
 //	dep/slider   -> declares RenderCSS, imports example.com/extra (NOT reachable from app)
 //
 // example.com/extra is absent from app's go.mod/go.sum, exactly like
-// github.com/tinywasm/date is absent from layout's go.sum: the consumer never
+// webtyp.com/date is absent from layout's go.sum: the consumer never
 // reaches the package that needs it, so `go mod tidy` will never add it.
 func setupUnreachablePackageProject(t *testing.T) (appDir, depDir string, finder *modfind.Finder) {
 	t.Helper()
@@ -96,8 +96,8 @@ func (a *App) RenderCSS() stylesheet { return ".app{color:green}" }
 // TestExtractAll_UnreachablePackageDoesNotKillExtraction is the regression test for
 // the layout/platformd failure:
 //
-//	missing go.sum entry for module providing package github.com/tinywasm/date
-//	(imported by github.com/tinywasm/components/calendarslider)
+//	missing go.sum entry for module providing package webtyp.com/date
+//	(imported by webtyp.com/components/calendarslider)
 //
 // The consumer never imports calendarslider. ssr pulls it into the generated
 // extractor main.go anyway (expandToSSRPackages walks every directory of every

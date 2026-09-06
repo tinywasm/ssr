@@ -6,10 +6,10 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/tinywasm/fmt"
-	"github.com/tinywasm/font"
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/svg/sprite"
+	"webtyp.com/fmt"
+	"webtyp.com/font"
+	"webtyp.com/html"
+	"webtyp.com/svg/sprite"
 )
 
 // CollectorOutput is the structure produced by the generated main.go
@@ -160,7 +160,7 @@ import (
 	"fmt"
 	"os"
 	{{if .HasAnyPages}}
-	"github.com/tinywasm/html"
+	"webtyp.com/html"
 	{{end}}
 	{{range .Modules}}
 	{{if .HasAnyFeature}}{{.Alias}} "{{.Path}}"{{end}}

@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/sitec"
-	"github.com/tinywasm/svg/sprite"
+	"webtyp.com/html"
+	"webtyp.com/sitec"
+	"webtyp.com/svg/sprite"
 )
 
 // TestPagesCarryEveryModulesIcons reproduces what shipped in mjosefa-website:

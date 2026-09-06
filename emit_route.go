@@ -4,9 +4,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/tinywasm/dom"
-	"github.com/tinywasm/fmt"
-	twhtml "github.com/tinywasm/html"
+	"webtyp.com/dom"
+	"webtyp.com/fmt"
+	twhtml "webtyp.com/html"
 )
 
 type pageBodyComponent struct {

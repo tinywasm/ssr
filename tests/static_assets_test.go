@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 // TestStaticAssetsUnionSinDuplicados: BuildConfig.StaticAssets se une a los de
@@ -39,17 +39,16 @@ func TestStaticAssetsUnionSinDuplicados(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/html v0.0.17
-	github.com/tinywasm/sitec v0.0.0
+	webtyp.com/html v0.0.17
+	webtyp.com/sitec v0.0.0
 )
 
-replace github.com/tinywasm/sitec => `+repoRoot+`
-`)
+replace webtyp.com/sitec => `+repoRoot+"\n"+webtypReplaces(t))
 	write(filepath.Join(appDir, "app.go"), `package app
 
 import (
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/html"
+	"webtyp.com/sitec"
 )
 
 type PageProducer struct{}
@@ -122,19 +121,19 @@ func TestStaticAssetsAusenteEsError(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/html v0.0.17
-	github.com/tinywasm/sitec v0.0.0
+	webtyp.com/html v0.0.17
+	webtyp.com/sitec v0.0.0
 )
 
-replace github.com/tinywasm/sitec => ` + repoRoot + "\n"
+replace webtyp.com/sitec => ` + repoRoot + "\n" + webtypReplaces(t)
 	if err := os.WriteFile(filepath.Join(appDir, "go.mod"), []byte(gomod), 0644); err != nil {
 		t.Fatal(err)
 	}
 	app := `package app
 
 import (
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/html"
+	"webtyp.com/sitec"
 )
 
 type PageProducer struct{}

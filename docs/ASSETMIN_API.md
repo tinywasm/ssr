@@ -131,7 +131,7 @@ Las rutas de `script.js`, `style.css`, `icons.svg` y `favicon.svg` se guardan re
 
 ### CSS
 - Output: `style.css`
-- Features: Merged bundles from all source files and SSR modules. Supports typed CSS via `github.com/tinywasm/css`. When the root module provides `Fonts()`, injects `@font-face` via `css.FontFaces`.
+- Features: Merged bundles from all source files and SSR modules. Supports typed CSS via `webtyp.com/css`. When the root module provides `Fonts()`, injects `@font-face` via `css.FontFaces`.
 
 ### SVG
 - **Sprite**: Delivered exclusively **inline** within `index.html`. No separate HTTP route.

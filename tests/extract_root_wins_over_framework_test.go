@@ -9,18 +9,18 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
 // TestExtractAll_AppRootWinsOverFramework reproduces, end to end through the
 // REAL extraction pipeline (codegen -> `go run` -> JSON round-trip -> the
-// same assetmin wiring tinywasm/app uses), the contract documented in
-// tinywasm/css/README.md's "SSR contract: RootCSS vs RenderCSS": RootCSS is a
+// same assetmin wiring webtyp/app uses), the contract documented in
+// webtyp/css/README.md's "SSR contract: RootCSS vs RenderCSS": RootCSS is a
 // single-winner slot, so an application that exposes its own `RootCSS()`
 // (its rebrand, e.g. config/css.go in a real app) must completely replace —
 // not merge with — the framework's default catalog from a package whose
-// import path ends in "tinywasm/css".
+// import path ends in "webtyp/css".
 //
 // This gap existed because ssr's own extraction tests (extract_test.go,
 // extract_module_root_test.go) only ever check ONE module's RootCSS in
@@ -33,10 +33,10 @@ import (
 func TestExtractAll_AppRootWinsOverFramework(t *testing.T) {
 	base := t.TempDir()
 	appDir := filepath.Join(base, "app")
-	// The dir name must end in "tinywasm/css" — isFrameworkModule matches on
+	// The dir name must end in "webtyp/css" — isFrameworkModule matches on
 	// the MODULE PATH suffix, not the dir name, but this mirrors the real
-	// layout (a checkout of github.com/tinywasm/css) for readability.
-	cssDir := filepath.Join(base, "tinywasm-css")
+	// layout (a checkout of webtyp.com/css) for readability.
+	cssDir := filepath.Join(base, "webtyp-css")
 
 	write := func(path, content string) {
 		t.Helper()
@@ -48,14 +48,14 @@ func TestExtractAll_AppRootWinsOverFramework(t *testing.T) {
 		}
 	}
 
-	// The "framework" module: its import path ends in "tinywasm/css", the
+	// The "framework" module: its import path ends in "webtyp/css", the
 	// literal suffix isFrameworkModule checks for. Its RootCSS declares the
 	// default catalog — a brand token no app override touches
 	// (--framework-only) plus the SAME token the app below overrides
 	// (--color-accent), so the test can tell "app's value wins" apart from
 	// "framework's other tokens silently vanish because the slot replaced,
 	// not merged."
-	write(filepath.Join(cssDir, "go.mod"), "module example.com/tinywasm/css\n\ngo 1.24\n")
+	write(filepath.Join(cssDir, "go.mod"), "module example.com/webtyp.com/css\n\ngo 1.24\n")
 	write(filepath.Join(cssDir, "css.go"), `//go:build !wasm
 
 package css
@@ -76,17 +76,17 @@ func RootCSS() stylesheet {
 	// to it.
 	// The generated extractor main.go lives inside appDir (rootDir/.ssr_extract)
 	// and imports BOTH discovered modules by path — it needs the app's own
-	// go.mod to resolve "example.com/tinywasm/css" as buildable, exactly like
-	// a real app's go.mod requires+replaces github.com/tinywasm/css.
+	// go.mod to resolve "example.com/webtyp.com/css" as buildable, exactly like
+	// a real app's go.mod requires+replaces webtyp.com/css.
 	write(filepath.Join(appDir, "go.mod"), `module example.com/app
 
 go 1.24
 
-require example.com/tinywasm/css v0.0.0
+require example.com/webtyp.com/css v0.0.0
 
-replace example.com/tinywasm/css => ../tinywasm-css
+replace example.com/webtyp.com/css => ../webtyp-css
 `)
-	write(filepath.Join(appDir, "main.go"), "package main\n\nimport _ \"example.com/tinywasm/css\"\n\nfunc main() {}\n")
+	write(filepath.Join(appDir, "main.go"), "package main\n\nimport _ \"example.com/webtyp.com/css\"\n\nfunc main() {}\n")
 	write(filepath.Join(appDir, "config", "css.go"), `//go:build !wasm
 
 package config
@@ -112,7 +112,7 @@ func RootCSS() stylesheet {
 	f := modfind.New()
 	f.Seed(appDir, []modfind.Module{
 		{Path: "example.com/app", Dir: appDir},
-		{Path: "example.com/tinywasm/css", Dir: cssDir},
+		{Path: "example.com/webtyp.com/css", Dir: cssDir},
 	})
 	e.SetFinder(f)
 
@@ -142,11 +142,11 @@ func RootCSS() stylesheet {
 		t.Fatal("no module extracted with IsRoot=true — app/config/css.go was not recognized as the root")
 	}
 	if !sawFramework {
-		t.Fatal("no module extracted with IsFramework=true — example.com/tinywasm/css was not recognized as the framework")
+		t.Fatal("no module extracted with IsFramework=true — example.com/webtyp.com/css was not recognized as the framework")
 	}
 
 	// Then the actual contract a running app depends on: wire the SAME
-	// extractor into a real AssetMin exactly like tinywasm/app's
+	// extractor into a real AssetMin exactly like webtyp/app's
 	// section-build.go does, and check what gets SERVED.
 	am := sitec.NewAssetMin(&sitec.Config{OutputDir: t.TempDir()})
 	am.SetSSRExtractor(e)

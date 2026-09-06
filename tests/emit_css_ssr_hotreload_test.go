@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 func TestCSSHotReload_NonSSRMode_KeyMismatchDuplicatesCSS(t *testing.T) {

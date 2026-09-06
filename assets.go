@@ -1,10 +1,10 @@
 package sitec
 
 import (
-	"github.com/tinywasm/font"
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/js"
-	"github.com/tinywasm/svg/sprite"
+	"webtyp.com/font"
+	"webtyp.com/html"
+	"webtyp.com/js"
+	"webtyp.com/svg/sprite"
 )
 
 // Assets is what compiling one module yields: the raw output its producers
@@ -12,7 +12,7 @@ import (
 //
 // This type is the contract between the compiler and whoever consumes its
 // output. It lives here, with the producer. It used to live in
-// github.com/tinywasm/assetmin — the consumer — which forced the producer to
+// webtyp.com/assetmin — the consumer — which forced the producer to
 // import the minifier, and with it an HTTP router and a terminal UI, just to
 // name its own result.
 type Assets struct {

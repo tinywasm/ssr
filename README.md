@@ -29,9 +29,9 @@ func (b *Brand) Favicon() favicon.Source {
 }
 ```
 
-`sitec` deriva el juego completo vía `github.com/tinywasm/image/favicon` (`icon-32.png`, `icon-192.png`, `apple-touch-icon.png`, `favicon.ico` y `favicon.svg` si se provee SVG) y emite un `<link>` por cada archivo con `Rel`.
+`sitec` deriva el juego completo vía `webtyp.com/image/favicon` (`icon-32.png`, `icon-192.png`, `apple-touch-icon.png`, `favicon.ico` y `favicon.svg` si se provee SVG) y emite un `<link>` por cada archivo con `Rel`.
 
-`sitec` **no sanea** el SVG que reciba: un SVG de un tercero se limpia antes con `github.com/tinywasm/svg/sanitize`. El de un proyecto es suyo y es de confianza.
+`sitec` **no sanea** el SVG que reciba: un SVG de un tercero se limpia antes con `webtyp.com/svg/sanitize`. El de un proyecto es suyo y es de confianza.
 
 ## Estado
 

@@ -5,7 +5,7 @@ package sitec
 import (
 	"testing"
 
-	"github.com/tinywasm/js"
+	"webtyp.com/js"
 )
 
 // White-box (package sitec, repo root) DELIBERADAMENTE — como

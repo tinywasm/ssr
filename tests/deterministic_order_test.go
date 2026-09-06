@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
 // writeFixtureApp creates a realistic consumer app layout:
@@ -84,7 +84,7 @@ func newSeededExtractor(root string) *sitec.Extractor {
 }
 
 // TestExtract_DeterministicAcrossRuns verifies the hypothesis that a Go map
-// with random iteration order inside tinywasm/ssr shuffles the extracted CSS
+// with random iteration order inside webtyp/ssr shuffles the extracted CSS
 // between process runs. Each iteration uses a FRESH Extractor (empty cache),
 // which forces a full generate+`go run` extraction cycle — the same thing
 // that happens every time the consumer application restarts.

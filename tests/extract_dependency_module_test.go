@@ -8,11 +8,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
-// Una app real toma sus componentes de OTROS módulos (tinywasm/layout, components), y
+// Una app real toma sus componentes de OTROS módulos (webtyp/layout, components), y
 // el CSS de esos módulos vive en sus subpaquetes (layout/platformd/css.go). ExtractAll
 // debe traerlo: si no, la hoja de estilos sale con las variables del proyecto y sin un
 // solo estilo de componente — la página se renderiza sin diseño.

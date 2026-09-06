@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 func TestExtract_RealFinder_ToleratesDependencyModules(t *testing.T) {
@@ -23,12 +23,12 @@ func TestExtract_RealFinder_ToleratesDependencyModules(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/widget v0.3.0
-	github.com/tinywasm/css v0.3.0
-	github.com/tinywasm/fmt v0.25.5
-	github.com/tinywasm/js v0.0.4
+	webtyp.com/widget v0.3.0
+	webtyp.com/css v0.3.0
+	webtyp.com/fmt v0.25.5
+	webtyp.com/js v0.0.4
 )
-`
+` + webtypReplaces(t)
 	if err := os.WriteFile(filepath.Join(root, "go.mod"), []byte(goMod), 0644); err != nil {
 		t.Fatal(err)
 	}
@@ -43,9 +43,8 @@ require (
 package config
 
 import (
-	"github.com/tinywasm/css"
-	"github.com/tinywasm/widget"
-	"github.com/tinywasm/widget/style"
+	"webtyp.com/css"
+	"webtyp.com/widget"
 )
 
 type MyWidget struct{}
@@ -53,7 +52,7 @@ type MyWidget struct{}
 func (m *MyWidget) WidgetName() widget.Name { return widget.Name("my-widget") }
 func (m *MyWidget) WidgetKind() widget.Kind { return widget.Region }
 func (m *MyWidget) RenderCSS() *css.Stylesheet {
-	return style.Of(m.WidgetName()).Root(style.Pad(style.Space0)).Stylesheet()
+	return css.NewStylesheet(css.Raw(".my-widget{padding:0}"))
 }
 `
 	if err := os.WriteFile(filepath.Join(root, "config", "css.go"), []byte(cssContent), 0644); err != nil {

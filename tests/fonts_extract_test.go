@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
 func writeProj(t *testing.T, root, path, content string) {
@@ -34,7 +34,7 @@ func getGomodCache() string {
 	return strings.TrimSpace(string(out))
 }
 
-// fontModuleDir resolves the monorepo checkout of tinywasm/font (no network).
+// fontModuleDir resolves the monorepo checkout of webtyp/font (no network).
 func fontModuleDir(t *testing.T) string {
 	t.Helper()
 	_, thisFile, _, ok := runtime.Caller(0)
@@ -53,7 +53,7 @@ func fontModuleDir(t *testing.T) string {
 	// Fallback to the mod cache path dynamically
 	gomodCache := getGomodCache()
 	if gomodCache != "" {
-		fallback := filepath.Join(gomodCache, "github.com", "tinywasm", "font@v0.0.4")
+		fallback := filepath.Join(gomodCache, "github.com", "webtyp", "font@v0.0.4")
 		if _, err := os.Stat(filepath.Join(fallback, "go.mod")); err == nil {
 			return fallback
 		}
@@ -65,7 +65,7 @@ func fontModuleDir(t *testing.T) string {
 func writeAppWithFont(t *testing.T, root string, packages map[string]string) {
 	t.Helper()
 	fontDir := fontModuleDir(t)
-	gomod := "module example.com/app\n\ngo 1.25.2\n\nrequire github.com/tinywasm/font v0.0.0\n\nreplace github.com/tinywasm/font => " + fontDir + "\n"
+	gomod := "module example.com/app\n\ngo 1.25.2\n\nrequire webtyp.com/font v0.0.0\n\nreplace webtyp.com/font => " + fontDir + "\n" + webtypReplaces(t)
 	writeProj(t, root, "go.mod", gomod)
 	writeProj(t, root, "main.go", "package main\n\nfunc main() {}\n")
 	for path, content := range packages {
@@ -75,7 +75,7 @@ func writeAppWithFont(t *testing.T, root string, packages map[string]string) {
 
 const fontsRoboto = `package config
 
-import "github.com/tinywasm/font"
+import "webtyp.com/font"
 
 func Fonts() font.Declaration {
 	return font.Declare("Roboto", "config/fonts")
@@ -151,7 +151,7 @@ func TestExtract_DuplicateFontsErrors(t *testing.T) {
 		"config/fonts.go": fontsRoboto,
 		"theme/fonts.go": `package theme
 
-import "github.com/tinywasm/font"
+import "webtyp.com/font"
 
 func Fonts() font.Declaration {
 	return font.Declare("Inter", "theme/fonts")
@@ -183,7 +183,7 @@ func TestExtract_GenericFontsReceiverErrors(t *testing.T) {
 	writeAppWithFont(t, root, map[string]string{
 		"config/fonts.go": `package config
 
-import "github.com/tinywasm/font"
+import "webtyp.com/font"
 
 type Box[T any] struct{}
 

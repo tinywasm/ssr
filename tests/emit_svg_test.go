@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/svg/sprite"
+	"webtyp.com/svg/sprite"
 )
 
 // TestSvgSpriteGeneration verifica que la funcionalidad de generación de sprites SVG

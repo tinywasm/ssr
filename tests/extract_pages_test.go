@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
 func TestExtractAll_RenderPages_EndToEnd(t *testing.T) {
@@ -26,9 +26,9 @@ func TestExtractAll_RenderPages_EndToEnd(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/html v0.0.17
+	webtyp.com/html v0.0.17
 )
-`
+` + webtypReplaces(t)
 	if err := os.WriteFile(filepath.Join(tmpDir, "go.mod"), []byte(gomodContent), 0644); err != nil {
 		t.Fatal(err)
 	}
@@ -36,7 +36,7 @@ require (
 	// Create pages.go declaring RenderPages() on a struct receiver
 	pagesGoContent := `package clinic
 
-import "github.com/tinywasm/html"
+import "webtyp.com/html"
 
 type SpecialtyPages struct{}
 

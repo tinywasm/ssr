@@ -1,4 +1,4 @@
-# AGENTS.md — `tinywasm/sitec`
+# AGENTS.md — `webtyp/sitec`
 
 Instrucciones obligatorias para cualquier agente que trabaje en este repositorio.
 
@@ -11,7 +11,7 @@ declaración de fuentes y shell HTML. Corre hasta terminar y sale.
 Es un compilador, no un servidor ni un renderizador. El nombre sigue la
 convención del ecosistema para compiladores: `ormc`, `ddlc`, `sitec`.
 
-Se llamaba `tinywasm/ssr`. Ese nombre describía una técnica que la librería no
+Se llamaba `webtyp/ssr`. Ese nombre describía una técnica que la librería no
 implementa: nada se renderiza server-side por petición; los productores corren
 una vez en build y el resultado es estático.
 
@@ -76,7 +76,7 @@ Go. Usa legítimamente la biblioteca estándar: `os`, `os/exec`, `encoding/json`
 **La regla del ecosistema de "nada de biblioteca estándar" NO aplica aquí** — esa
 regla es para código que se compila a WASM. No "arregles" esos imports.
 
-Para construir errores usa `github.com/tinywasm/fmt` (`fmt.Err`), que es la
+Para construir errores usa `webtyp.com/fmt` (`fmt.Err`), que es la
 convención del ecosistema.
 
 ### Sin strings hardcodeados
@@ -132,7 +132,7 @@ test debe seguir en verde:
 5. **Una extracción vacía es un fallo**, nunca un éxito silencioso: significa que
    la aplicación se serviría sin CSS.
 6. **El modo por defecto es memoria.** Probar un componente no debe dejar un solo
-   archivo en disco. Comprobable: tras `tinywasm -tui` en un componente,
+   archivo en disco. Comprobable: tras `webtyp -tui` en un componente,
    `git status` de su repo queda limpio.
 
 ## Plan vigente

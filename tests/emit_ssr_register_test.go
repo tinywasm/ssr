@@ -3,7 +3,7 @@
 package sitec_test
 
 import (
-	"github.com/tinywasm/css"
+	"webtyp.com/css"
 	"testing"
 )
 

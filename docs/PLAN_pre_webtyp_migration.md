@@ -4,7 +4,7 @@ EXECUTOR: jules
 REVIEWER: none
 STATUS: review
 SESSION: 8847021014614760349
-PR: https://github.com/tinywasm/sitec/pull/20
+PR: https://github.com/webtyp/sitec/pull/20
 ---
 
 > Este plan se despacha con el flujo CodeJob. Ver skill: `agents-workflow`.
@@ -15,7 +15,7 @@ PR: https://github.com/tinywasm/sitec/pull/20
 ## Prerrequisito
 
 ```bash
-go install github.com/tinywasm/devflow/cmd/gotest@latest
+go install webtyp.com/devflow/cmd/gotest@latest
 ```
 
 Usá `gotest` (no `go test`).
@@ -23,7 +23,7 @@ Usá `gotest` (no `go test`).
 ## El bug, observado
 
 Un **shell de app WASM** (un solo `index.html`, sin `RenderPages`) servido
-**desde memoria** por el demonio de `tinywasm/app` (proyecto sin
+**desde memoria** por el demonio de `webtyp/app` (proyecto sin
 `web/server.go` → `SetFS(NewMemFS())`, `diskMirrored == false`):
 
 ```
@@ -67,7 +67,7 @@ fijo.
 - Los tests de `Read`: ninguno combina las tres condiciones a la vez —
   **sin páginas** (⇒ `RouteExtractedAssets` relativiza) + **`NewMemFS`**
   (⇒ sin fallback a disco) + **clave absoluta** (⇒ el mismatch aflora).
-- En `tinywasm/app`, `tests/memory_serve_test.go` sólo pide `/img/*`, nunca
+- En `webtyp/app`, `tests/memory_serve_test.go` sólo pide `/img/*`, nunca
   `/script.js` ni `/style.css`.
 
 ## Etapa 1 — El test que falla capturando el bug (YA ESCRITO, verificá)
@@ -86,7 +86,7 @@ package sitec
 import (
 	"testing"
 
-	"github.com/tinywasm/js"
+	"webtyp.com/js"
 )
 
 func TestCaso1_ReadSirveGlueYCssRelativizadosDesdeMemoria(t *testing.T) {
@@ -203,7 +203,7 @@ func (c *AssetMin) processAsset(fh *asset) error {
 
 **Anti-footgun:** si esto rompe algún test de flush (los que cuentan
 escrituras a disco o afirman "en caso 1 no se escribe ni un byte" — esos
-tests son de `tinywasm/app`, no de este repo, pero verificá los de
+tests son de `webtyp/app`, no de este repo, pero verificá los de
 `tests/emit_flush_to_disk_test.go`), **revertí SÓLO la Etapa 3** y quedate con
 la Etapa 2, que ya arregla el bug por sí sola. La Etapa 2 es la corrección
 mínima suficiente; la 3 es robustez.
@@ -219,7 +219,7 @@ mínima suficiente; la 3 es robustez.
 
 ## Restricciones del repo
 
-- `tinywasm/sitec` compila con Go estándar (no es un binario WASM del Worker);
+- `webtyp/sitec` compila con Go estándar (no es un binario WASM del Worker);
   `strings`/`path`/`filepath` están permitidos aquí — ya se usan en `Read`.
 - Idioma: identificadores y mensajes de error en inglés; comentarios de prosa
   y docs en español (los comentarios de este plan ya están así).
@@ -241,10 +241,10 @@ mínima suficiente; la 3 es robustez.
       relativizados (sin páginas). Ninguna ruta que ya resolvía cambia.
 - [ ] Ningún archivo de la lista "ajenos a este bug" aparece en el diff.
 
-## Seguimiento en `tinywasm/app` (fuera de este repo, no lo hagas acá)
+## Seguimiento en `webtyp/app` (fuera de este repo, no lo hagas acá)
 
-`tinywasm/app` tiene `tests/caso1_trio_servido_test.go` (end-to-end: arranca
+`webtyp/app` tiene `tests/caso1_trio_servido_test.go` (end-to-end: arranca
 el demonio en caso 1 y pide `/`, `/script.js`, `/style.css`, `/client.wasm`).
 Falla hoy por este mismo bug. Cuando esta versión de `sitec` publique,
-`tinywasm/app` bumpea la dependencia y ese test pasa — es un plan aparte en
+`webtyp/app` bumpea la dependencia y ese test pasa — es un plan aparte en
 ese repo.

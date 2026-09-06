@@ -24,7 +24,7 @@
 - **Processing**: Minified using `tdewolff/minify/html`.
 
 ## Fonts (`.ttf` faces)
-- **Source**: `Fonts() font.Declaration` from the **root** module only (extracted by `tinywasm/ssr` from `fonts.go`).
+- **Source**: `Fonts() font.Declaration` from the **root** module only (extracted by `webtyp/ssr` from `fonts.go`).
 - **Processing**: The four faces (`Family.Face(Style) + ".ttf"`) are copied from `RootDir/<Dir()>` into `OutputDir` when missing or stale. Missing face → hard error naming the file.
 - **CSS**: `css.FontFaces(d, AssetsURLPrefix)` is injected into `style.css` as dynamic content (`format("truetype")`, `font-display: swap`).
 - **Not** registered as a concatenating asset handler and **not** in `SupportedExtensions()` — binaries must not enter the text merger. Hot-reload of `.ttf` bytes is deliberately unsupported; edit `fonts.go` to re-extract the declaration.

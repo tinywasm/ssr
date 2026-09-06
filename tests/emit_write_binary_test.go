@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 // AssetMin.Write registers a pre-built artifact (e.g. a compiled WASM binary)

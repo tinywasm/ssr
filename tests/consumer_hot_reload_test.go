@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
-// This file reproduces the exact wiring a consumer application (godev/tinywasm
+// This file reproduces the exact wiring a consumer application (godev/webtyp
 // CLI) uses in dev mode:
 //
 //	extractor := sitec.New(root)

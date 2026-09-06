@@ -1,30 +1,30 @@
-module github.com/tinywasm/sitec
+module webtyp.com/sitec
 
 go 1.25.2
 
 require (
 	github.com/tdewolff/minify/v2 v2.24.8
-	github.com/tinywasm/css v0.4.15
-	github.com/tinywasm/dom v0.13.5
-	github.com/tinywasm/fmt v0.25.7
-	github.com/tinywasm/font v0.0.4
-	github.com/tinywasm/html v0.0.17
-	github.com/tinywasm/image v0.1.0
-	github.com/tinywasm/js v0.0.4
-	github.com/tinywasm/modfind v0.0.4
-	github.com/tinywasm/router v0.1.29
-	github.com/tinywasm/svg v0.3.0
-	github.com/tinywasm/tinygo v1.0.0
+	webtyp.com/css v0.4.15
+	webtyp.com/dom v0.13.9
+	webtyp.com/fmt v0.25.7
+	webtyp.com/font v0.0.4
+	webtyp.com/html v0.0.17
+	webtyp.com/image v0.1.0
+	webtyp.com/js v0.0.4
+	webtyp.com/modfind v0.0.4
+	webtyp.com/router v0.1.29
+	webtyp.com/svg v0.3.0
+	webtyp.com/tinygo v1.0.0
 )
 
 require (
 	github.com/HugoSmits86/nativewebp v1.2.1 // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
 	github.com/tdewolff/parse/v2 v2.8.5 // indirect
-	github.com/tinywasm/color v0.1.1 // indirect
-	github.com/tinywasm/context v0.0.18 // indirect
-	github.com/tinywasm/fetch v0.1.24 // indirect
-	github.com/tinywasm/json v0.5.23 // indirect
-	github.com/tinywasm/model v0.1.7 // indirect
 	golang.org/x/image v0.45.0 // indirect
+	webtyp.com/color v0.1.1 // indirect
+	webtyp.com/context v0.0.18 // indirect
+	webtyp.com/fetch v0.1.24 // indirect
+	webtyp.com/json v0.5.23 // indirect
+	webtyp.com/model v0.1.7 // indirect
 )

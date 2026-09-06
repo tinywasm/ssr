@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/tinywasm/fmt"
+	"webtyp.com/fmt"
 )
 
 type producerDecl struct {

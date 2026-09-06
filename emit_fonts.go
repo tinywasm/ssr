@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/tinywasm/font"
+	"webtyp.com/font"
 )
 
 // copyDeclaredFonts copies the four faces of d from RootDir/<Dir()> into OutputDir.

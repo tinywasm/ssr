@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
 // TestExtractAll_NestedSiteDirectoryIsRoot reproduces a real gap surfaced
@@ -31,7 +31,7 @@ import (
 func TestExtractAll_NestedSiteDirectoryIsRoot(t *testing.T) {
 	base := t.TempDir()
 	appDir := filepath.Join(base, "app") // the ONE shared module for every site
-	cssDir := filepath.Join(base, "tinywasm-css")
+	cssDir := filepath.Join(base, "webtyp-css")
 
 	write := func(path, content string) {
 		t.Helper()
@@ -43,7 +43,7 @@ func TestExtractAll_NestedSiteDirectoryIsRoot(t *testing.T) {
 		}
 	}
 
-	write(filepath.Join(cssDir, "go.mod"), "module example.com/tinywasm/css\n\ngo 1.24\n")
+	write(filepath.Join(cssDir, "go.mod"), "module example.com/webtyp.com/css\n\ngo 1.24\n")
 	write(filepath.Join(cssDir, "css.go"), `//go:build !wasm
 
 package css
@@ -59,9 +59,9 @@ func RootCSS() stylesheet { return stylesheet(":root{--framework-default:1;}") }
 
 go 1.24
 
-require example.com/tinywasm/css v0.0.0
+require example.com/webtyp.com/css v0.0.0
 
-replace example.com/tinywasm/css => ../tinywasm-css
+replace example.com/webtyp.com/css => ../webtyp-css
 `)
 
 	write(filepath.Join(appDir, "sites", "a", "config", "css.go"), `//go:build !wasm
@@ -78,7 +78,7 @@ func RootCSS() stylesheet { return stylesheet(":root{--brand:siteA;}") }
 
 import (
 	_ "example.com/app/sites/a/config"
-	_ "example.com/tinywasm/css"
+	_ "example.com/webtyp.com/css"
 )
 
 func main() {}
@@ -98,7 +98,7 @@ func RootCSS() stylesheet { return stylesheet(":root{--brand:siteB;}") }
 
 import (
 	_ "example.com/app/sites/b/config"
-	_ "example.com/tinywasm/css"
+	_ "example.com/webtyp.com/css"
 )
 
 func main() {}
@@ -112,7 +112,7 @@ func main() {}
 		f := modfind.New()
 		f.Seed(siteDir, []modfind.Module{
 			{Path: "example.com/app", Dir: appDir},
-			{Path: "example.com/tinywasm/css", Dir: cssDir},
+			{Path: "example.com/webtyp.com/css", Dir: cssDir},
 		})
 		e.SetFinder(f)
 

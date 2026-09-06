@@ -11,9 +11,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	imgmin "github.com/tinywasm/image/min"
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	imgmin "webtyp.com/image/min"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
 func TestCmdBuild_ImageProcessing(t *testing.T) {
@@ -29,10 +29,10 @@ func TestCmdBuild_ImageProcessing(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/css v0.4.12
-	github.com/tinywasm/image v0.0.21
+	webtyp.com/css v0.4.12
+	webtyp.com/image v0.0.21
 )
-`
+` + webtypReplaces(t)
 	if err := os.WriteFile(filepath.Join(tmpDir, "go.mod"), []byte(gomodContent), 0644); err != nil {
 		t.Fatal(err)
 	}
@@ -63,7 +63,7 @@ require (
 	// Create image.go
 	imageGoContent := `package myapp
 
-import "github.com/tinywasm/image"
+import "webtyp.com/image"
 
 func RenderImages() []image.Asset {
 	return []image.Asset{
@@ -82,7 +82,7 @@ func RenderImages() []image.Asset {
 	// Create css.go so sitec extraction succeeds
 	cssGoContent := `package myapp
 
-import "github.com/tinywasm/css"
+import "webtyp.com/css"
 
 func RenderCSS() *css.Stylesheet {
 	return css.NewStylesheet(css.Raw("body{color:red}"))

@@ -19,8 +19,8 @@ package mypkg
 
 import (
     _ "embed"
-    "github.com/tinywasm/css"
-    "github.com/tinywasm/js"
+    "webtyp.com/css"
+    "webtyp.com/js"
 )
 
 // --- In css.go ---
@@ -93,7 +93,7 @@ The instance does not need to be initialized with application state — it only 
 
 package button
 
-import "github.com/tinywasm/css"
+import "webtyp.com/css"
 
 type Button struct{}
 
@@ -126,10 +126,10 @@ The compile-and-invoke mechanism removes the limitation of static evaluation.
 `:root { … }` is a global namespace. To prevent silent theme corruption from transitive dependencies, only one `RootCSS()` reaches the bundle:
 
 1. If the **root project** declares `RootCSS()` → it wins, fully replacing any framework tokens.
-2. Otherwise, if **`tinywasm/css`** declares `RootCSS()` → it wins (the default fallback theme).
+2. Otherwise, if **`webtyp/css`** declares `RootCSS()` → it wins (the default fallback theme).
 3. If a **third-party module** (neither root nor css) declares `RootCSS()` → ignored, with a warning logged via `Config.Logger`.
 
-The fallback module path is the unexported constant `cssModulePath = "tinywasm/css"` in `ssr_loader.go`.
+The fallback module path is the unexported constant `cssModulePath = "webtyp/css"` in `ssr_loader.go`.
 
 `RenderCSS()`, `RenderJS()` (bundled), `RenderHTML()`, and `IconSvg()` from third-party modules are NOT subject to single-override — they accumulate normally in the `middle` slot. Standalone JS files from different modules with the same name are currently merged.
 
@@ -164,7 +164,7 @@ am.WaitForSSRLoad(2 * time.Second) // optional; mostly for tests
 
 ## Hot reload
 
-For local modules (e.g., via `replace` in `go.mod`), the orchestrator (`tinywasm/app`) calls:
+For local modules (e.g., via `replace` in `go.mod`), the orchestrator (`webtyp/app`) calls:
 
 ```go
 am.ReloadSSRModule(moduleDir)
@@ -180,7 +180,7 @@ The loader re-extracts the assets, re-evaluates the `RootCSS()` single-override 
 
 Ownership is meaningless for asset sources: nothing imports a component's `css.go`, so depfind can never call it "ours" and the event gets dropped — the symptom being *"editing `css.go` changes nothing until the daemon restarts"*. That was a real bug; both sides are now pinned by tests (`TestSSRWatcher_Contract` here, `TestHotReload_GoModMainInput_ReceivesGoEvents` in `devwatch`).
 
-assetmin does **not** import `devwatch` — only `tinywasm/app` wires the two together. The routing is tested here with a fake `SSRExtractor`; the gate itself is tested in `devwatch` with a stub handler.
+assetmin does **not** import `devwatch` — only `webtyp/app` wires the two together. The routing is tested here with a fake `SSRExtractor`; the gate itself is tested in `devwatch` with a stub handler.
 
 ## Manual registration
 

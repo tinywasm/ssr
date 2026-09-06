@@ -3,8 +3,8 @@ package sitec
 import (
 	"strings"
 
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/js"
+	"webtyp.com/html"
+	"webtyp.com/js"
 )
 
 // ContainsCSS checks if the CSS bundle contains the given substring.

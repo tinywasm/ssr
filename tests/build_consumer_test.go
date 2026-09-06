@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 func TestBuild_ConsumerAndInvariants(t *testing.T) {
@@ -34,15 +34,15 @@ func TestBuild_ConsumerAndInvariants(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/css v0.4.15
-	github.com/tinywasm/svg v0.1.21
+	webtyp.com/css v0.4.15
+	webtyp.com/svg v0.1.21
 )
-`)
+` + webtypReplaces(t))
 		write(filepath.Join(depDir, "widget", "css.go"), `//go:build !wasm
 
 package widget
 
-import "github.com/tinywasm/css"
+import "webtyp.com/css"
 
 type Widget struct{}
 
@@ -57,8 +57,8 @@ func (w *Widget) RenderCSS() *css.Stylesheet {
 package widget
 
 import (
-	"github.com/tinywasm/svg"
-	"github.com/tinywasm/svg/sprite"
+	"webtyp.com/svg"
+	"webtyp.com/svg/sprite"
 )
 
 func (w *Widget) IconSvg() *sprite.Sprite {
@@ -80,21 +80,20 @@ go 1.25.2
 
 require (
 	example.com/comp v0.0.0
-	github.com/tinywasm/css v0.4.15
-	github.com/tinywasm/html v0.0.17
-	github.com/tinywasm/sitec v0.0.0
-	github.com/tinywasm/svg v0.1.21
+	webtyp.com/css v0.4.15
+	webtyp.com/html v0.0.17
+	webtyp.com/sitec v0.0.0
+	webtyp.com/svg v0.1.21
 )
 
 replace example.com/comp => ../comp
 
-replace github.com/tinywasm/sitec => `+repoRoot+`
-`)
+replace webtyp.com/sitec => `+repoRoot+"\n"+webtypReplaces(t))
 		write(filepath.Join(appDir, "app.go"), `package app
 
 import (
 	_ "example.com/comp/widget"
-	"github.com/tinywasm/html"
+	"webtyp.com/html"
 )
 
 type PageProducer struct{}
@@ -118,7 +117,7 @@ func (p *PageProducer) RenderPages() []html.Page {
 
 package app
 
-import "github.com/tinywasm/sitec"
+import "webtyp.com/sitec"
 
 func (p *PageProducer) RenderSite() *sitec.Site {
 	return &sitec.Site{

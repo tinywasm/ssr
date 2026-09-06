@@ -5,8 +5,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/tinywasm/fmt"
-	"github.com/tinywasm/svg/sprite"
+	"webtyp.com/fmt"
+	"webtyp.com/svg/sprite"
 )
 
 var reLayer = regexp.MustCompile(`@layer\s+([^;{]+);`)

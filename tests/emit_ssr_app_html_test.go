@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/router/mock"
+	"webtyp.com/router/mock"
 )
 
 // spriteMarkup identifica el sprite SVG inyectado por AddDynamicContent.

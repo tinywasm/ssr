@@ -13,8 +13,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/html"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/html"
+	"webtyp.com/sitec"
 )
 
 func pngBytesHelper(t *testing.T, w, h int) []byte {
@@ -52,13 +52,12 @@ func writeTempAppWithFaviconHelper(t *testing.T, appDir string, raster []byte, s
 go 1.25.2
 
 require (
-	github.com/tinywasm/html v0.0.17
-	github.com/tinywasm/image v0.1.0
-	github.com/tinywasm/sitec v0.0.0
+	webtyp.com/html v0.0.17
+	webtyp.com/image v0.1.0
+	webtyp.com/sitec v0.0.0
 )
 
-replace github.com/tinywasm/sitec => `+repoRoot+`
-`)
+replace webtyp.com/sitec => `+repoRoot+"\n"+webtypReplaces(t))
 	hasSVG := len(svg) > 0
 	svgEmbed := ""
 	svgField := ""
@@ -75,8 +74,8 @@ replace github.com/tinywasm/sitec => `+repoRoot+`
 
 import (
 	_ "embed"
-	"github.com/tinywasm/css"
-	"github.com/tinywasm/image/favicon"
+	"webtyp.com/css"
+	"webtyp.com/image/favicon"
 )
 
 //go:embed logo.png
@@ -149,23 +148,23 @@ func TestFaviconOnlyRootModuleViaBuild(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/html v0.0.17
-	github.com/tinywasm/image v0.1.0
-	github.com/tinywasm/sitec v0.0.0
+	webtyp.com/html v0.0.17
+	webtyp.com/image v0.1.0
+	webtyp.com/sitec v0.0.0
 	example.com/widget v0.0.0
 )
 
-replace github.com/tinywasm/sitec => `+repoRoot+`
+replace webtyp.com/sitec => `+repoRoot+`
 replace example.com/widget => ./libwidget
-`)
+` + webtypReplaces(t))
 	raster := pngBytesHelper(t, 256, 256)
 	os.WriteFile(filepath.Join(appDir, "logo.png"), raster, 0644)
 	write(filepath.Join(appDir, "app.go"), `package app
 
 import (
 	_ "embed"
-	"github.com/tinywasm/css"
-	"github.com/tinywasm/image/favicon"
+	"webtyp.com/css"
+	"webtyp.com/image/favicon"
 	_ "example.com/widget"
 )
 
@@ -181,16 +180,16 @@ func (b *Brand) RenderCSS() *css.Stylesheet { return css.NewStylesheet() }
 go 1.25.2
 
 require (
-	github.com/tinywasm/css v0.4.15
-	github.com/tinywasm/image v0.1.0
+	webtyp.com/css v0.4.15
+	webtyp.com/image v0.1.0
 )
-`)
+` + webtypReplaces(t))
 	write(filepath.Join(libDir, "widget.go"), `package widget
 
 import (
 	_ "embed"
-	"github.com/tinywasm/css"
-	"github.com/tinywasm/image/favicon"
+	"webtyp.com/css"
+	"webtyp.com/image/favicon"
 )
 
 //go:embed logo.png
@@ -311,18 +310,17 @@ func TestNoFaviconNoLinkNoFile(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/css v0.4.15
-	github.com/tinywasm/html v0.0.17
-	github.com/tinywasm/sitec v0.0.0
+	webtyp.com/css v0.4.15
+	webtyp.com/html v0.0.17
+	webtyp.com/sitec v0.0.0
 )
 
-replace github.com/tinywasm/sitec => `+repoRoot+`
-`)
+replace webtyp.com/sitec => `+repoRoot+"\n"+webtypReplaces(t))
 	write(filepath.Join(appDir, "app.go"), `package app
 
 import (
-	"github.com/tinywasm/css"
-	"github.com/tinywasm/html"
+	"webtyp.com/css"
+	"webtyp.com/html"
 )
 
 type P struct{}
@@ -369,18 +367,17 @@ func TestExistingFaviconSvgSurvives(t *testing.T) {
 go 1.25.2
 
 require (
-	github.com/tinywasm/css v0.4.15
-	github.com/tinywasm/html v0.0.17
-	github.com/tinywasm/sitec v0.0.0
+	webtyp.com/css v0.4.15
+	webtyp.com/html v0.0.17
+	webtyp.com/sitec v0.0.0
 )
 
-replace github.com/tinywasm/sitec => `+repoRoot+`
-`)
+replace webtyp.com/sitec => `+repoRoot+"\n"+webtypReplaces(t))
 	write(filepath.Join(appDir, "app.go"), `package app
 
 import (
-	"github.com/tinywasm/css"
-	"github.com/tinywasm/html"
+	"webtyp.com/css"
+	"webtyp.com/html"
 )
 
 type P struct{}

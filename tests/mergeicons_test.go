@@ -3,9 +3,9 @@ package sitec_test
 import (
 	"testing"
 
-	"github.com/tinywasm/sitec"
-	"github.com/tinywasm/svg"
-	"github.com/tinywasm/svg/sprite"
+	"webtyp.com/sitec"
+	"webtyp.com/svg"
+	"webtyp.com/svg/sprite"
 )
 
 // spriteWith builds a sprite carrying n distinct icons (id0..idN under prefix).

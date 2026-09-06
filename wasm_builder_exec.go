@@ -5,9 +5,9 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/tinywasm/fmt"
-	"github.com/tinywasm/js"
-	"github.com/tinywasm/tinygo"
+	"webtyp.com/fmt"
+	"webtyp.com/js"
+	"webtyp.com/tinygo"
 )
 
 // WasmBuildOptions selects what to compile and what to call the result.

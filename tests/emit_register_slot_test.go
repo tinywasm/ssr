@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 // Reproduce un SSRExtractor inconsistente: la misma clave de módulo llega

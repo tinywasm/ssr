@@ -4,7 +4,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/tinywasm/image/favicon"
+	"webtyp.com/image/favicon"
 )
 
 func (c *AssetMin) setFaviconFiles(files []favicon.File) {

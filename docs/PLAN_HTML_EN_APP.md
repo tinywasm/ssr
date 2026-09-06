@@ -1,12 +1,12 @@
 > **Bloqueado por la etapa 7 de [PLAN.md](PLAN.md)** — la que trae la etapa
-> `emit` desde `assetmin`. Este plan vivía en `tinywasm/assetmin`, pero los dos
+> `emit` desde `assetmin`. Este plan vivía en `webtyp/assetmin`, pero los dos
 > archivos que toca (`html.go` y `routeAssets`) son política de compilación y su
 > dueño es este repo. Se movió aquí para que el trabajo aterrice donde vivirá el
 > código.
 >
 > Al ejecutarlo, los nombres habrán cambiado: `html.go` → parte de `emit.go`,
 > y `routeAssets` → parte de `emit.go` (no de `ssr_loader.go`, que se parte y
-> cuya mitad de arnés se va a `tinywasm/app`).
+> cuya mitad de arnés se va a `webtyp/app`).
 
 # PLAN: el HTML de los módulos debe caer DENTRO de `#app`
 

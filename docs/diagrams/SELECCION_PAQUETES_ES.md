@@ -6,12 +6,12 @@
 
 ## Premisa: se arranca desde la raíz de lo que se quiere probar
 
-`tinywasm -tui` se ejecuta desde el directorio de lo que se prueba, **nunca**
+`webtyp -tui` se ejecuta desde el directorio de lo que se prueba, **nunca**
 desde su subcarpeta de cliente.
 
 ```
-✅ cd components/calendarslider && tinywasm -tui
-❌ cd components/calendarslider/web && tinywasm -tui
+✅ cd components/calendarslider && webtyp -tui
+❌ cd components/calendarslider/web && webtyp -tui
 ```
 
 El directorio de arranque **no** es necesariamente la raíz del módulo.
@@ -22,7 +22,7 @@ El directorio de arranque **no** es necesariamente la raíz del módulo.
 
 ```mermaid
 flowchart TD
-    A["tinywasm -tui<br/>DIR_ARRANQUE"]
+    A["webtyp -tui<br/>DIR_ARRANQUE"]
     B["modfind: go list -m -json all<br/>cmd.Dir = DIR_ARRANQUE"]
     C["módulo main = el que contiene go.mod<br/>⚠️ puede estar POR ENCIMA de DIR_ARRANQUE"]
     D["lista de módulos:<br/>main + dependencias en GOMODCACHE"]
@@ -83,7 +83,7 @@ Arranque en `layout/platformd`. El `go.mod` está en `layout/`.
 ```mermaid
 flowchart TD
     A["DIR_ARRANQUE = layout/platformd"]
-    B["go.mod está en layout/<br/>módulo main = github.com/tinywasm/layout<br/>Dir = layout/"]
+    B["go.mod está en layout/<br/>módulo main = webtyp.com/layout<br/>Dir = layout/"]
     C["se recorre layout/ entero<br/>+ cada dependencia en GOMODCACHE"]
 
     A --> B --> C
@@ -116,7 +116,7 @@ o sea **por encima** del directorio de arranque.
 ```mermaid
 flowchart TD
     A["DIR_ARRANQUE = components/calendarslider"]
-    B["go.mod está en components/<br/>módulo main = github.com/tinywasm/components<br/>Dir = components/  ⚠️ NO calendarslider"]
+    B["go.mod está en components/<br/>módulo main = webtyp.com/components<br/>Dir = components/  ⚠️ NO calendarslider"]
     C["el walk parte de components/ ENTERO<br/>pero el ALCANCE se calcula desde<br/>DIR_ARRANQUE = calendarslider"]
 
     A --> B --> C
@@ -136,8 +136,8 @@ flowchart TD
 
 ```
 $ cd components/calendarslider && go list -m -json
-Path: github.com/tinywasm/components
-Dir:  /home/cesar/Dev/Project/tinywasm/components    <- raíz del módulo
+Path: webtyp.com/components
+Dir:  /home/cesar/Dev/Project/webtyp/components    <- raíz del módulo
 Main: true
 ```
 

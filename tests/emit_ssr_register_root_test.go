@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/css"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/css"
+	"webtyp.com/sitec"
 )
 
 type rootProvider struct{}

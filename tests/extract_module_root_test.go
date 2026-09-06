@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/tinywasm/modfind"
-	"github.com/tinywasm/sitec"
+	"webtyp.com/modfind"
+	"webtyp.com/sitec"
 )
 
 // TestExtractModule_RootWithSSRInSubpackages reproduce un bug real: una app cuyo
@@ -23,7 +23,7 @@ import (
 // a RootCSS().
 //
 // El test hermano (TestExtractModule_Subpackage) pasa el directorio DEL SUBPAQUETE y
-// pasaba en verde, tapando el agujero: nadie probaba lo que hace `tinywasm/app`, que
+// pasaba en verde, tapando el agujero: nadie probaba lo que hace `webtyp/app`, que
 // llama a ReloadSSRModule con la RAÍZ del proyecto.
 func TestExtractModule_RootWithSSRInSubpackages(t *testing.T) {
 	root := t.TempDir()
@@ -74,7 +74,7 @@ func (c *Catalog) RenderCSS() stylesheet { return stylesheet(".catalog{display:g
 	f.Seed(root, []modfind.Module{{Path: "example.com/app", Dir: root}})
 	e.SetFinder(f)
 
-	// Esto es exactamente lo que hace tinywasm/app: extraer desde la RAÍZ.
+	// Esto es exactamente lo que hace webtyp/app: extraer desde la RAÍZ.
 	assets, err := e.ExtractModule(root)
 	if err != nil {
 		t.Fatalf("ExtractModule: %v", err)

@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/tinywasm/fmt"
+	"webtyp.com/fmt"
 )
 
 // VerifyTinyGoCompatible checks if the source tree is compatible with TinyGo compilation.

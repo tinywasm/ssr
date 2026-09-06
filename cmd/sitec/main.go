@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/tinywasm/sitec"
+	"webtyp.com/sitec"
 )
 
 func main() {
